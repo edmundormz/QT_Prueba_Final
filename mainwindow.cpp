@@ -104,3 +104,11 @@ void MainWindow::on_pbStart_clicked()
     }
     paused = !paused;
 }
+
+void MainWindow::on_pbReset_clicked()
+{
+    cronometro->stop();
+    ui->lcdTimer->display("0");
+    paused = false;
+    ui->progressBar->setValue(0);
+}

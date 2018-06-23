@@ -26,6 +26,8 @@ private slots:
 
     void on_pbStart_clicked();
 
+    void on_pbReset_clicked();
+
 private:
     Ui::MainWindow *ui;
 
