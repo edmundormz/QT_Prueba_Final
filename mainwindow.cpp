@@ -91,3 +91,16 @@ void MainWindow::Logger(QString command, QString log_array){
         QMessageBox::information(this, "Error", "Unable to open log file");
     }
 }
+
+void MainWindow::on_pbStart_clicked()
+{
+    if(paused){
+        cronometro->stop();
+        ui->pbStart->setText("Restart");
+    }
+    else {
+        cronometro->start(tiempo_muestreo);
+        ui->pbStart->setText("Pause");
+    }
+    paused = !paused;
+}

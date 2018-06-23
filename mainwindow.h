@@ -24,6 +24,8 @@ public slots:
 private slots:
     void on_dial_valueChanged(int value);
 
+    void on_pbStart_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -36,6 +38,7 @@ private:
     QDate date;
     bool init_log_A = false;
     bool init_log_B = false;
+    bool paused = true;
 };
 
 #endif // MAINWINDOW_H
