@@ -60,9 +60,9 @@
     <property name="geometry">
      <rect>
       <x>240</x>
-      <y>20</y>
+      <y>31</y>
       <width>256</width>
-      <height>192</height>
+      <height>181</height>
      </rect>
     </property>
    </widget>
@@ -224,6 +224,19 @@
     </property>
     <property name="text">
      <string>10</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>10</y>
+      <width>255</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Héctor Edmundo Ramírez Gómez (1,2,5,6)</string>
     </property>
    </widget>
   </widget>
