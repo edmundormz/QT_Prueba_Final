@@ -26,6 +26,11 @@ private:
     Ui::MainWindow *ui;
 
     QTimer *cronometro = new QTimer(this);
+    int progress = 1;
+    int random_counter = 0;
+    int randomA [100];
+    int randomB [100];
+    bool display_randoms = false;
 };
 
 #endif // MAINWINDOW_H
