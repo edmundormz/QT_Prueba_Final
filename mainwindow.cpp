@@ -2,6 +2,10 @@
 #include "ui_mainwindow.h"
 #include <QDebug>
 #include <QRandomGenerator>
+#include <QFile>
+#include <QTextStream>
+#include <QDir>
+#include <QMessageBox>
 
 int cont=0;
 int tiempo_muestreo = 1000;
@@ -32,11 +36,21 @@ void MainWindow::fTimer(){
         ui->progressBar->setValue(progress);
         if(progress == 100){
             progress = 1;
+            if(init_log_A == false){
+                Logger("A:","A");
+                init_log_A = true;
+            }
+            if(init_log_B == false){
+                Logger("B:","B");
+                init_log_B = true;
+            }
             randomA[random_counter] = qrand() % 100;
+            Logger(QString::number(randomA[random_counter]) + ",","A");
             randomB[random_counter] = qrand() % 100;
-            qDebug()<<random_counter;
-            qDebug()<<"Random A:" << randomA[random_counter];
-            qDebug()<<"Random B:" << randomB[random_counter];
+            Logger(QString::number(randomB[random_counter]) + ",","B");
+//            qDebug()<<random_counter;
+//            qDebug()<<"Random A:" << randomA[random_counter];
+//            qDebug()<<"Random B:" << randomB[random_counter];
             random_counter++;
     }
 }
@@ -54,4 +68,26 @@ void MainWindow::on_dial_valueChanged(int value)
     tiempo_muestreo = value * 100;
     cronometro->start(tiempo_muestreo);
     ui->lbSpeedValue->setText(QString::number(tiempo_muestreo));
+}
+
+void MainWindow::Logger(QString command, QString log_array){
+    QString current_day = QString::number(date.currentDate().dayOfYear());
+    QString logs_dir_path = "/home/hecmundo/qt_logs";
+
+    //Check if logs directory exists
+    if (!QDir(logs_dir_path).exists()){
+        QDir().mkdir(logs_dir_path);
+    }
+    //Check if current log file exists
+    QFile log_path(logs_dir_path + "/log_" + current_day + log_array + ".csv");
+    if (log_path.open(QIODevice::WriteOnly | QIODevice::Append)){
+        QTextStream out_log(&log_path);
+        QString log = command;
+        out_log << log;
+        log_path.flush();
+        log_path.close();
+    }
+    else {
+        QMessageBox::information(this, "Error", "Unable to open log file");
+    }
 }

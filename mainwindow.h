@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#include <QDate>
 
 namespace Ui {
 class MainWindow;
@@ -18,6 +19,7 @@ public:
 
 public slots:
     void fTimer();
+    void Logger(QString command, QString log_array);
 
 private slots:
     void on_dial_valueChanged(int value);
@@ -31,6 +33,9 @@ private:
     int randomA [100];
     int randomB [100];
     bool display_randoms = false;
+    QDate date;
+    bool init_log_A = false;
+    bool init_log_B = false;
 };
 
 #endif // MAINWINDOW_H
